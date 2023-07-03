@@ -39,7 +39,7 @@ namespace PokemonReviewsApp.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("PokemonReviewsApp.Models.Country", b =>
+            modelBuilder.Entity("PokemonReviewsApp.Models.Owner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,13 +193,13 @@ namespace PokemonReviewsApp.Migrations
 
             modelBuilder.Entity("PokemonReviewsApp.Models.Owner", b =>
                 {
-                    b.HasOne("PokemonReviewsApp.Models.Country", "Country")
+                    b.HasOne("PokemonReviewsApp.Models.Owner", "Owner")
                         .WithMany("Owners")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Country");
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("PokemonReviewsApp.Models.PokemonCategory", b =>
@@ -264,7 +264,7 @@ namespace PokemonReviewsApp.Migrations
                     b.Navigation("PokemonCategories");
                 });
 
-            modelBuilder.Entity("PokemonReviewsApp.Models.Country", b =>
+            modelBuilder.Entity("PokemonReviewsApp.Models.Owner", b =>
                 {
                     b.Navigation("Owners");
                 });
