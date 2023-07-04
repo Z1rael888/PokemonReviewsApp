@@ -46,7 +46,7 @@ namespace PokemonReviewsApp.Controllers
             return Ok(owner);
         }
         [HttpGet("{ownerId}/pokemon")]
-        [ProducesResponseType(200, Type = typeof(PokemonDto))]
+        [ProducesResponseType(200, Type = typeof(Owner))]
         [ProducesResponseType(400)]
         public IActionResult GetPokemonByOwner(int ownerId)
         {
@@ -55,7 +55,7 @@ namespace PokemonReviewsApp.Controllers
                 return NotFound();
             }
 
-            var owner = _mapper.Map<IEnumerable<PokemonDto>>(_ownerRepository.GetPokemonByOwner(ownerId));
+            var owner = _mapper.Map<List<PokemonDto>>(_ownerRepository.GetPokemonByOwner(ownerId));
             if (!ModelState.IsValid)
                 return BadRequest();
 

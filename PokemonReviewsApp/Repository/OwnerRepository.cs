@@ -1,4 +1,5 @@
-﻿using PokemonReviewsApp.Data;
+﻿using AutoMapper;
+using PokemonReviewsApp.Data;
 using PokemonReviewsApp.Interfaces;
 using PokemonReviewsApp.Models;
 
@@ -7,10 +8,12 @@ namespace PokemonReviewsApp.Repository
     public class OwnerRepository : IOwnerRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public OwnerRepository(DataContext context)
+        public OwnerRepository(DataContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public Owner GetOwner(int ownerId)
         {
