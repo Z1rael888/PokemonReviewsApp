@@ -16,6 +16,7 @@ namespace PokemonReviewsApp.Repository
             _mapper = mapper;
         }
 
+        //postMethod
         public bool CreateOwner(Owner owner)
         {
             _context.Add(owner);
@@ -46,7 +47,7 @@ namespace PokemonReviewsApp.Repository
         {
             return _context.Owners.Any(o=>o.Id == ownerId);
         }
-
+        //postMethod
         public bool Save()
         {
             var saved = _context.SaveChanges();

@@ -16,15 +16,6 @@ namespace PokemonReviewsApp.Repository
             return _context.Categories.Any(c => c.Id == id);
         }
 
-        public bool CreateCategory(Category category)
-        {
-            //Change Tracker
-            // add,updating,modifying
-            //connected vs disconnected
-            //!!!EntityState.Added = (disconnected state)!!!
-            _context.Add(category);
-            return Save();
-        }
 
         public ICollection<Category> GetCategories()//return a list
         {
@@ -41,6 +32,15 @@ namespace PokemonReviewsApp.Repository
             return _context.PokemonCategories.Where(e => e.CategoryId == categoryId).Select(c => c.Pokemon).ToList(); ;
         }
 
+        public bool CreateCategory(Category category)
+        {
+            //Change Tracker
+            // add,updating,modifying
+            //connected vs disconnected
+            //!!!EntityState.Added = (disconnected state)!!!
+            _context.Add(category);
+            return Save();
+        }
         public bool Save()
         {
             var saved = _context.SaveChanges();
