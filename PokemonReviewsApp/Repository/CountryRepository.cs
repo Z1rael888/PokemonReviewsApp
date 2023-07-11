@@ -26,6 +26,12 @@ namespace PokemonReviewsApp.Repository
             return Save();
         }
 
+        public bool UpdateCountry(Country country)
+        {
+             _context.Update(country);
+            return Save();
+        }
+
         public ICollection<Country> GetCountries()
         {
             return _context.Countries.ToList();
