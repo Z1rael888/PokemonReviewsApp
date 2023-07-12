@@ -6,6 +6,7 @@ using PokemonReviewsApp.Models;
 using PokemonReviewsApp.Repository;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace PokemonReviewsApp.Controllers
@@ -113,6 +114,28 @@ namespace PokemonReviewsApp.Controllers
             {
                 ModelState.AddModelError("", "Something went wrong updating category");
                 return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{categoryId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteCategory(int categoryId)
+        {
+            if (!_categoryRepository.CategoryExists(categoryId))
+            {
+                return NotFound();
+            }
+
+            var categoryToDelete = _categoryRepository.GetCategory(categoryId);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            if (!_categoryRepository.DeleteCategory(categoryToDelete))
+            {
+                ModelState.AddModelError("","Something went wrong deleting category");
             }
 
             return NoContent();
